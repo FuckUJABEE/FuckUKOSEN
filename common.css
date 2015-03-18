@@ -5,12 +5,29 @@ body{
 	font-family: meiryo, sans-serif;
 	font-size: 15px;
 	
+	background-color: rgba(200,200,200, 1.0);
+	background-image: url("bg.png");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center top;
+	
+	color: #000000;
+	
 	text-align: center;
 }
 
 
 input{
 	margin: 5px;
+}
+
+form{
+	background-color: rgba(255,255,255, 0.8);
+
+	color: #000000;
+
+	margin: 0% 40%;
+	padding: 20px
 }
 
 footer{

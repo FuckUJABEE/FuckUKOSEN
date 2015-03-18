@@ -9,9 +9,9 @@
 			echo "	<head>\n";
 			echo '				<meta http-equiv="content-type" content="text/html" charset="Shift-JIS">'."\n";
 			echo '				<meta name="author" content="＠FuckUJABEE">'."\n";
-			echo '				\n'
-			echo '				<link rel="stylesheet" text="text/css" href="common.css">\n'
-			echo '				\n'
+			echo '				';
+			echo '				<link rel="stylesheet" text="text/css" href="common.css">';
+			echo '				';
 			echo '				<meta http-equiv="content-language" content="ja">'."\n";
 			echo "		<title>\n";
 			echo "SearchResult : ".$searchString . "\n";
@@ -28,7 +28,7 @@
 				}
 			}
 			
-			echo '<a href="index.php">Back</a>'."\n";
+			echo '<a href="index.html">Back</a>'."\n";
 			echo "	</body>\n";
 			echo "</html>\n";
 		}

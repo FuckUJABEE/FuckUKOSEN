@@ -54,7 +54,7 @@
 			'.$_POST['register'].'
 		</h2><br>
 		<span id="back_to_index">
-			<a href="index.php" >Back</a>
+			<a href="index.html" >Back</a>
 		</span>
 	</body>
 </html>'
@@ -99,7 +99,7 @@
 			echo '		<a href="'.$makeFileName.'">'.$makeFileName.'</a>';
 			echo "		<br>\n";
 			echo '		<span id="back_to_index">'."\n";
-			echo '			<a href="index.php">Back</a>'."\n";
+			echo '			<a href="index.html">Back</a>'."\n";
 			echo "		</span>\n";
 			echo "	</body>\n";
 			echo "</html>\n";

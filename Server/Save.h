@@ -1,8 +1,6 @@
 #pragma once
 #include<string>
-
-// ユーザーからの入力を受け取りCSVに保存する
-// 「ユーザーからの入力の受け取り」と「CSVへの書き込み」を分ける場合はユーザーからの入力の受け取りをGetUserInputクラスに書く
+#include <winsock2.h>
 
 struct SaveData{
 	std::string registerString;
@@ -37,12 +35,13 @@ struct SaveData{
 class Save{
 private:
 	std::string fileNameCSV;
+	std::string answerString;
 	SaveData saveData;
 
 	bool SaveToCSV();
 	bool MakeHTML();
 
-	bool ThrowToTerminal();
+	bool ThrowToTerminal(SOCKET);
 
 public:
 	Save(){
@@ -53,9 +52,13 @@ public:
 		saveData = SaveData(_registerString, _URL, _position0, _position1);
 	}
 
-	void SaveMain(){
+	void GetUserInput(SaveData _saveData){
+		saveData = _saveData;
+	}
+
+	void SaveMain(SOCKET client){
 		SaveToCSV();
 		MakeHTML();
-		ThrowToTerminal();
+		ThrowToTerminal(client);
 	};
 };

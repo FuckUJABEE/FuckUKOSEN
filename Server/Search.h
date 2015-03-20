@@ -2,6 +2,9 @@
 
 #include<string>
 #include<vector>
+#include<WinSock2.h>
+#include<cstdio>
+#include<cstdlib>
 
 struct ResponceSet{
 	std::string URL;
@@ -20,29 +23,28 @@ struct ResponceSet{
 
 class Search{
 private:
-	int resultNum;	// 検索に引っかかった数
+
 	std::string searchString;	// 検索する文字列
 	std::string fileNameCSV;
 	std::vector<ResponceSet> responceSet;
+	std::string responceHTML;
 
 	bool searchFromCSV();
-	bool responceToTerminal();	// ユーザーに検索結果を返す
+	bool responceToTerminal(SOCKET);	// ユーザーに検索結果を返す
 
 public:
 	void getSearchString(const std::string&);		// ユーザーから検索する文字列を受け取る
 
-	void searchMain(){
+	void searchMain(SOCKET client){
 		searchFromCSV();
-		responceToTerminal();
+		responceToTerminal(client);
 	}
 
 	Search(){
-		resultNum = 0;
 		fileNameCSV = "null";
 	}
 
 	Search(const std::string& _fileNameCSV){
-		resultNum = 0;
 		fileNameCSV = _fileNameCSV;
 	}
 };

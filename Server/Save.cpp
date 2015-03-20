@@ -28,6 +28,8 @@ bool Save::MakeHTML()
 	std::ofstream ofs(saveData.registerString+".html");
 
 	if (ofs){
+		answerString = saveData.registerString + ".html";
+
 		ofs <<
 			"<!DOCMENTTYPE html>\n" <<
 			"<html>\n" <<
@@ -86,11 +88,16 @@ bool Save::MakeHTML()
 	return false;
 }
 
-bool Save::ThrowToTerminal()
+bool Save::ThrowToTerminal(SOCKET client)
 {
-#ifdef DEBUG
-	cout << "Save::ThrowToTerminal" <<endl;
-#endif
+	std::cout << std::endl;
+	std::cout << "Save::ThrowToTerminal" << std::endl;
+
+	int result = send(client, answerString.c_str(), 64, 0);
+
+	if (result < 0){
+		std::cout << "Error" << std::endl;
+	}
 
 	return true;
 }

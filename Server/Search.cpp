@@ -62,15 +62,26 @@ bool Search::searchFromCSV()
 	return false;
 }
 
-bool Search::responceToTerminal()
+bool Search::responceToTerminal(SOCKET client)
 {
 	if (!responceSet.empty()){
+		std::cout << responceSet.size() << std::endl;
+
+		char str[64];
+		sprintf_s(str, "%d", responceSet.size());
+
+		send(client, str, 8, 0);
+
 		for (auto it : responceSet){
-			std::cout << it.name << " " << it.URL << std::endl;
+			send(client, it.name.c_str(), 64, 0);
+			send(client, it.URL.c_str(), 64, 0);
+
+			std::cout << it.name << std::endl;
+
 		}
 	}
 	else{
-		std::cout << "Empty!" << std::endl;
+		send(client, "0", 8, 0);
 	}
 
 	return true;

@@ -65,12 +65,14 @@ int main(void){
 		recv(server, resultNum, 8, 0);
 		std::cout << resultNum << "ŒŒ©‚Â‚©‚è‚Ü‚µ‚½" << std::endl;
 
+
 		for (int i = atoi(resultNum); i > 0; --i){
-			char name[1024];
-			char url[1024];
+			char name[1024] = {'\0'};
+			char url[1024] = {'\0'};
 
 			recv(server, name, 1024, 0);
 			recv(server, url, 1024, 0);
+
 			std::cout << i << " : " << name << " " << url << std::endl;
 		}
 		break;

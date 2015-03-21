@@ -73,13 +73,14 @@ bool Search::responceToTerminal(SOCKET client)
 		send(client, str, 8, 0);
 
 		for (auto it : responceSet){
-			send(client, it.name.c_str(), 64, 0);
-			send(client, it.URL.c_str(), 64, 0);
+			send(client, it.name.c_str(), 1024, 0);
+			send(client, it.URL.c_str(), 1024, 0);
 
-			std::cout << it.name << std::endl;
+			std::cout << it.name.c_str() << " " << it.URL.c_str() << std::endl;
 
 		}
 	}
+
 	else{
 		send(client, "0", 8, 0);
 	}

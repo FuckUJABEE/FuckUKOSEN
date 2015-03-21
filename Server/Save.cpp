@@ -13,7 +13,7 @@ bool Save::SaveToCSV()
 	std::ofstream ofs(fileNameCSV, std::ios_base::app);
 
 	if (ofs){
-		ofs << saveData.registerString << "," << saveData.position[0] << "," << saveData.position[1] << "," << saveData.URL << "\n";
+		ofs << saveData.registerString << "," << saveData.position[0] << "," << saveData.position[1] << "," << saveData.explanation << "\n";
 		return true;
 	}
 	else{
@@ -54,11 +54,11 @@ bool Save::MakeHTML()
 			"\n" <<
 			"		</h2><br>\n" <<
 			"		<h1>\n" <<
-			"			Address\n" <<
+			"			Explanation\n" <<
 			"		</h1>\n" <<
 			"		<h2>\n" <<
 			"			" <<
-			saveData.URL <<
+			saveData.explanation <<
 			"\n" <<
 			"		</h2><br>\n" <<
 			"		<h1>\n" <<

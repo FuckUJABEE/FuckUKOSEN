@@ -42,9 +42,7 @@ bool Search::searchFromCSV()
 					switch (getVarCount){
 					case 0:
 						_rs.name = s;
-						break;
-					case 3:
-						_rs.URL = s;
+						_rs.URL = s + ".html";
 						break;
 					}
 				}

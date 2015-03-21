@@ -4,26 +4,26 @@
 
 struct SaveData{
 	std::string registerString;
-	std::string URL;
+	std::string explanation;
 	double position[2];
 
 	SaveData(){
 		registerString = "null";
-		URL = "null";
+		explanation = "null";
 		for (int i = 0; i < 2; ++i)
 			position[i] = 0;
 	};
 
-	SaveData(const std::string& _registerString, const std::string& _URL, const double& _position0, const double& _position1){
+	SaveData(const std::string& _registerString, const std::string& _explanation, const double& _position0, const double& _position1){
 		registerString = _registerString;
-		URL = _URL;
+		explanation = _explanation;
 		position[0] = _position0;
 		position[1] = _position1;
 	};
 
 	SaveData(SaveData& _saveData){
 		registerString = _saveData.registerString;
-		URL = _saveData.URL;
+		explanation = _saveData.explanation;
 
 		for (int i = 0; i < 2;++i)
 			position[i] = _saveData.position[i];

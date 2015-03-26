@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include<string>
 #include<vector>
@@ -24,16 +24,16 @@ struct ResponceSet{
 class Search{
 private:
 
-	std::string searchString;	// ŒŸõ‚·‚é•¶š—ñ
+	std::string searchString;	// æ¤œç´¢ã™ã‚‹æ–‡å­—åˆ—
 	std::string fileNameCSV;
 	std::vector<ResponceSet> responceSet;
 	std::string responceHTML;
 
 	bool searchFromCSV();
-	bool responceToTerminal(SOCKET);	// ƒ†[ƒU[‚ÉŒŸõŒ‹‰Ê‚ğ•Ô‚·
+	bool responceToTerminal(SOCKET);	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«æ¤œç´¢çµæœã‚’è¿”ã™
 
 public:
-	void getSearchString(const std::string&);		// ƒ†[ƒU[‚©‚çŒŸõ‚·‚é•¶š—ñ‚ğó‚¯æ‚é
+	void getSearchString(const std::string&);		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰æ¤œç´¢ã™ã‚‹æ–‡å­—åˆ—ã‚’å—ã‘å–ã‚‹
 
 	void searchMain(SOCKET client){
 		searchFromCSV();

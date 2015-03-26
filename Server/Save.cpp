@@ -1,4 +1,4 @@
-#include"Save.h"
+﻿#include"Save.h"
 
 #include<iostream>
 #include<fstream>
@@ -8,12 +8,26 @@
 #include<iostream>
 #endif
 
+std::string WStringToString(std::wstring oWString)
+{
+	// http://www.wabiapp.com/WabiSampleSource/windows/wstring_to_string.html
+
+	int iBufferSize = WideCharToMultiByte(CP_OEMCP, 0, oWString.c_str(), -1, (char *)NULL, 0, NULL, NULL);
+	CHAR* cpMultiByte = new CHAR[iBufferSize];
+	WideCharToMultiByte(CP_OEMCP, 0, oWString.c_str(), -1, cpMultiByte, iBufferSize, NULL, NULL);
+
+	std::string oRet(cpMultiByte, cpMultiByte + iBufferSize - 1);
+	delete[] cpMultiByte;
+
+	return(oRet);
+}
+
 bool Save::SaveToCSV()
 {
 	std::ofstream ofs(fileNameCSV, std::ios_base::app);
 
 	if (ofs){
-		ofs << saveData.registerString << "," << saveData.position[0] << "," << saveData.position[1] << "," << saveData.explanation << "\n";
+		ofs << saveData.registerString.c_str() << "," << saveData.position[0] << "," << saveData.position[1] << "," << saveData.explanation.c_str() << "\n";
 		return true;
 	}
 	else{
@@ -25,10 +39,11 @@ bool Save::SaveToCSV()
 
 bool Save::MakeHTML()
 {
-	std::ofstream ofs(saveData.registerString+".html");
+	std::wstring tmp(L".html");
+	std::ofstream ofs(saveData.registerString+tmp);
 
 	if (ofs){
-		answerString = saveData.registerString + ".html";
+		answerString = saveData.registerString + tmp;
 
 		ofs <<
 			"<!DOCMENTTYPE html>\n" <<
@@ -40,7 +55,7 @@ bool Save::MakeHTML()
 			"		<link rel = \"stylesheet\" text = \"text/css\" href = \"common.css\">\n" <<
 			"		<title>\n" <<
 			"			" <<
-			saveData.registerString <<
+			saveData.registerString.c_str() <<
 			"\n" <<
 			"		</title>\n" <<
 			"	</head>\n" <<
@@ -50,7 +65,7 @@ bool Save::MakeHTML()
 			"		</h1>\n" <<
 			"		<h2>\n" <<
 			"			" <<
-			saveData.registerString <<
+			saveData.registerString.c_str() <<
 			"\n" <<
 			"		</h2><br>\n" <<
 			"		<h1>\n" <<
@@ -58,7 +73,7 @@ bool Save::MakeHTML()
 			"		</h1>\n" <<
 			"		<h2>\n" <<
 			"			" <<
-			saveData.explanation <<
+			saveData.explanation.c_str() <<
 			"\n" <<
 			"		</h2><br>\n" <<
 			"		<h1>\n" <<
@@ -93,7 +108,9 @@ bool Save::ThrowToTerminal(SOCKET client)
 	std::cout << std::endl;
 	std::cout << "Save::ThrowToTerminal" << std::endl;
 
-	int result = send(client, answerString.c_str(), 64, 0);
+	std::string dist = WStringToString(answerString);
+
+	int result = send(client, dist.c_str(), 64, 0);
 
 	if (result < 0){
 		std::cout << "Error" << std::endl;

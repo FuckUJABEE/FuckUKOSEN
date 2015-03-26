@@ -1,4 +1,4 @@
-#include"Connect.h"
+ï»¿#include"Connect.h"
 
 Connect::Connect(){
 	memset(&source, 0, sizeof(source));
@@ -11,31 +11,31 @@ Connect::Connect(){
 
 	if (WSAStartup(MAKEWORD(2, 0), &data) < 0){
 		std::cout << GetLastError() << std::endl;
-		std::cout << "ƒ\ƒPƒbƒg’ÊM€”õƒGƒ‰[\n" << std::endl;
+		std::cout << "ã‚½ã‚±ãƒƒãƒˆé€šä¿¡æº–å‚™ã‚¨ãƒ©ãƒ¼\n" << std::endl;
 	}
 
 	server = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
 	if (server < 0){
 		std::cout << GetLastError() << std::endl;
-		std::cout << "ƒ\ƒPƒbƒg¶¬ƒGƒ‰[\n" << std::endl;
+		std::cout << "ã‚½ã‚±ãƒƒãƒˆç”Ÿæˆã‚¨ãƒ©ãƒ¼\n" << std::endl;
 	}
 
 	if (bind(server, (struct sockaddr *)&source, sizeof(source)) < 0){
 		std::cout << GetLastError() << std::endl;
-		std::cout << "ƒoƒCƒ“ƒhƒGƒ‰[\n" << std::endl;
+		std::cout << "ãƒã‚¤ãƒ³ãƒ‰ã‚¨ãƒ©ãƒ¼\n" << std::endl;
 	}
 
 	if (listen(server, 1) < 0){
-		std::cout << "Ú‘±‹–‰ÂƒGƒ‰[\n" << std::endl;
+		std::cout << "æŽ¥ç¶šè¨±å¯ã‚¨ãƒ©ãƒ¼\n" << std::endl;
 	}
 
-	std::cout << "Ú‘±ŠJŽn\n" << std::endl;
+	std::cout << "æŽ¥ç¶šé–‹å§‹\n" << std::endl;
 
 	client = accept(server, NULL, NULL);
 
 	if (client < 0){
-		std::cout << "‘Ò‹@ƒGƒ‰[\n" << std::endl;
+		std::cout << "å¾…æ©Ÿã‚¨ãƒ©ãƒ¼\n" << std::endl;
 	}
 }
 
@@ -43,7 +43,7 @@ Connect::~Connect(){
 	closesocket(client);
 
 	WSACleanup();
-	std::cout << "’ÊM‚ðI—¹‚µ‚Ü‚·" << std::endl;
+	std::cout << "é€šä¿¡ã‚’çµ‚äº†ã—ã¾ã™" << std::endl;
 }
 
 int Connect::GetMode(){
@@ -57,13 +57,13 @@ int Connect::GetMode(){
 	result = recv(client, buffer_tmp, 64, 0);
 
 	if (result < 0){
-		std::cout << "ŽóMƒGƒ‰[" << std::endl;
+		std::cout << "å—ä¿¡ã‚¨ãƒ©ãƒ¼" << std::endl;
 	}
 	else{
 		buffer = atoi(buffer_tmp);
 	}
 
-	std::cout << buffer << "‚ª“ü—Í‚³‚ê‚Ü‚µ‚½" <<std::endl;
+	std::cout << buffer << "ãŒå…¥åŠ›ã•ã‚Œã¾ã—ãŸ" <<std::endl;
 
 	return buffer;
 }
@@ -79,13 +79,13 @@ std::string Connect::GetSearchString(){
 	result = recv(client, buffer_tmp, 1024, 0);
 
 	if (result < 0){
-		std::cout << "ŽóMƒGƒ‰[" << std::endl;
+		std::cout << "å—ä¿¡ã‚¨ãƒ©ãƒ¼" << std::endl;
 	}
 	else{
 		buffer = buffer_tmp;
 	}
 
-	std::cout << "u"<< buffer << "v‚ª“ü—Í‚³‚ê‚Ü‚µ‚½" <<std::endl;
+	std::cout << "ã€Œ"<< buffer << "ã€ãŒå…¥åŠ›ã•ã‚Œã¾ã—ãŸ" <<std::endl;
 
 	return buffer;
 

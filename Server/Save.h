@@ -1,20 +1,20 @@
-#pragma once
+﻿#pragma once
 #include<string>
 #include <winsock2.h>
 
 struct SaveData{
-	std::string registerString;
-	std::string explanation;
+	std::wstring registerString;
+	std::wstring explanation;
 	double position[2];
 
 	SaveData(){
-		registerString = "null";
-		explanation = "null";
+		registerString = std::wstring(L"null");
+		explanation = std::wstring(L"null");
 		for (int i = 0; i < 2; ++i)
 			position[i] = 0;
 	};
 
-	SaveData(const std::string& _registerString, const std::string& _explanation, const double& _position0, const double& _position1){
+	SaveData(const std::wstring& _registerString, const std::wstring& _explanation, const double& _position0, const double& _position1){
 		registerString = _registerString;
 		explanation = _explanation;
 		position[0] = _position0;
@@ -34,8 +34,8 @@ struct SaveData{
 
 class Save{
 private:
-	std::string fileNameCSV;
-	std::string answerString;
+	std::wstring fileNameCSV;
+	std::wstring answerString;
 	SaveData saveData;
 
 	bool SaveToCSV();
@@ -45,10 +45,11 @@ private:
 
 public:
 	Save(){
-		fileNameCSV = "save.csv";
+		setlocale(LC_CTYPE, "");
+		fileNameCSV = std::wstring(L"save.csv");
 	}
 
-	void GetUserInput(const std::string& _registerString, const std::string& _URL, const double& _position0, const double& _position1){
+	void GetUserInput(const std::wstring& _registerString, const std::wstring& _URL, const double& _position0, const double& _position1){
 		saveData = SaveData(_registerString, _URL, _position0, _position1);
 	}
 

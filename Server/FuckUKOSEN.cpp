@@ -1,4 +1,4 @@
-#include"Save.h"
+﻿#include"Save.h"
 #include"Search.h"
 #include"Connect.h"
 
@@ -6,6 +6,8 @@
 
 int main()
 {
+	// ポート番号は7000
+
 	enum MODE { UNDEF = -1, SEARCH = 0, REGISTER = 1};
 
 	int conectionCount = 0;
